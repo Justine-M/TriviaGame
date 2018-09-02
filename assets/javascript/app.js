@@ -1,44 +1,56 @@
-// $(document).ready(function () {
+    var timer = 30;
 
-var gameOptions = [
-        {
-            quesion: "What is the name of Harry Potter's owl?",
-            answers: ["Crookshanks", "Scabbers", "Hedwig", "Nagini"],
-            correct: ["2"]
-        },
-        {
-            quesion: "What is the name of Harry's best friend?",
-            answers: ["Hermione Granger", "Ronald Weasley", "Draco Malfoy", "Hagrid"],
-            correct: ["1"]
-        },
-        { 
-            quesion: "Who is Harry's arch nemesis?",
-            answers: ["Bellatix Lestrange", "Albus Dumbledore", "Lord Voldemort", "Severus Snape"],
-            correct: ["2"]
+    //  Variable that will hold our interval ID when we execute
+    //  the "run" function
+    var intervalId;
 
-        },
-        {
-            quesion: "What is Lord Voldemort's birth name?",
-            answers: ["Barty Crouch Jr.", "Newt Scamander", "Peter Pettigrew", "Tom Marvolo Riddle"],
-            correct: ["3"]
+    //  The run function sets an interval
+    //  that runs the decrement function once a second.
+    //  *****BUG FIX******** 
+    //  Clearing the intervalId prior to setting our new intervalId will not allow multiple instances.
+    function run() {
+      clearInterval(intervalId);
+      intervalId = setInterval(decrement, 1000);
+    }
 
-        }
-    ]
+    //  The decrement function.
+    function decrement() {
 
-  var correctAnswers = 0;
-  var incorrectAnswers = 0;
-  var unAnswered = 0;
-  var timer = 60
-  var intervalId;
-  var userGuess = "";
-  var timerRunning = false;
+      //  Decrease number by one.
+      timer--;
 
-  // This initializes the button that starts the game 
- $("#start").on("click", function (){
-    // when the start button clicked, the div with the questions that was hidden is shown
-            $('displaygame').show();
-            console.log('hello');
-    
-            $(this).hide();
-        });
+      //  Show the number in the #show-number tag.
+      $("#timer").html("<h2>" + timer + "</h2>");
+
+
+      //  Once number hits zero...
+      if (timer === 0) {
+
+        //  ...run the stop function.
+        stop();
+
+        //  Alert the user that time is up.
+        alert("Time Up!");
+      }
+    }
+
+    //  The stop function
+    function stop() {
+
+      //  Clears our intervalId
+      //  We just pass the name of the interval
+      //  to the clearInterval function.
+      clearInterval(intervalId);
+    }
+
+    //  Execute the run function.
+    run();
+
+
+
+
+
+
+
+
 
