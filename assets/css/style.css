@@ -1,0 +1,17 @@
+body {
+    background-image: url("https://nerdist.com/wp-content/uploads/2014/10/Hogwarts-castle-harry-potter-166431.jpg");
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+div {
+    text-align: center;
+    color: whitesmoke;
+    font-family: cursive;
+    padding-top: 100px;
+    
+    
+
+}
+
+
